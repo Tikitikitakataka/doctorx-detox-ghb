@@ -2,22 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>DoctorX Detox GHB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <title>Monitor WBTC/ETH Uniswap v3</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>DoctorX Detox GHB</h1>
-    <nav>
-        <button onclick="showScreen('intro')">🧠 Introducción</button>
-        <button onclick="showScreen('motivacion')">🎯 Motivación</button>
-        <button onclick="showScreen('estabilizacion')">🧩 Estabilización</button>
-        <button onclick="showScreen('descenso')">📉 Descenso</button>
-    </nav>
+    <main class="card">
+        <h1>📱 Monitor WBTC/ETH (Uniswap v3 Arbitrum)</h1>
+        <p class="subtitle">Consulta el precio cada 30 minutos y te avisa si sale de tus límites.</p>
 
-    <section id="intro" class="pantalla">Bienvenido/a. Aquí irá la introducción y el consentimiento.</section>
-    <section id="motivacion" class="pantalla">Aquí podrás explorar tus motivaciones para dejar el G.</section>
-    <section id="estabilizacion" class="pantalla">Datos para estabilizar tu consumo y generar un calendario.</section>
-    <section id="descenso" class="pantalla">Plan personalizado de reducción.</section>
+        <section class="grid">
+            <label>
+                Límite inferior (ETH por 1 WBTC)
+                <input id="lowerLimit" type="number" step="0.0001" placeholder="Ej: 12.50" inputmode="decimal">
+            </label>
+
+            <label>
+                Límite superior (ETH por 1 WBTC)
+                <input id="upperLimit" type="number" step="0.0001" placeholder="Ej: 18.20" inputmode="decimal">
+            </label>
+        </section>
+
+        <div class="actions">
+            <button id="startBtn">Iniciar monitor</button>
+            <button id="stopBtn" disabled>Detener</button>
+            <button id="installBtn" class="secondary" hidden>Instalar app</button>
+        </div>
+
+        <section class="status">
+            <h2>Estado</h2>
+            <p><strong>Par:</strong> WBTC/ETH en Arbitrum (Uniswap v3)</p>
+            <p><strong>Último precio:</strong> <span id="lastPrice">--</span></p>
+            <p><strong>Última consulta:</strong> <span id="lastCheck">--</span></p>
+            <p><strong>Siguiente consulta:</strong> cada 30 minutos</p>
+            <p><strong>Instalación:</strong> <span id="installState">Disponible al abrir desde HTTPS.</span></p>
+            <p id="message" class="message">Configura tus límites y pulsa “Iniciar monitor”.</p>
+        </section>
+    </main>
 
     <script src="app.js"></script>
 </body>
